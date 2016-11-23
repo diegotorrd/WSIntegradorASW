@@ -17,6 +17,8 @@ import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.Status;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.UsuarioResponse;
 //import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Pokemon;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.PokemonDAO;
+import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Registro;
+import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.RegistroDAO;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.SuministroDAO;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.UsuarioDAO;
 import retrofit2.Call;
@@ -61,6 +63,21 @@ public class Main {
             sumDAO.desconectarse(conn);
             return res;
            
+        });
+        
+        post("/registrar", (req, resp) -> {
+            boolean res;
+
+            RegistroDAO regDAO = new RegistroDAO();
+
+            Registro reg = new Gson().fromJson(req.body(), Registro.class);
+            
+            Connection conn = regDAO.conectarse();
+            res = regDAO.registrarDatos(conn, reg);
+
+            regDAO.desconectarse(conn);
+           
+            return res;
         });
 //
 //        // Endpoint para registrar un nuevo usuario

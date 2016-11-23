@@ -6,6 +6,7 @@
 package pe.edu.ulima.ulpokemonapi.ulpokemonapi.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,15 +22,15 @@ public class prueba {
      */
     public static void main(String[] args) throws ClassNotFoundException {
         // TODO code application logic here
-        SuministroDAO dao = new SuministroDAO();
+        RegistroDAO dao = new RegistroDAO();
+        Registro reg = new Registro(1,5896,485.36f);
+        reg.setConsumo(485.63f);
         Connection con;
         int i;
         try {
-             con = dao.conectarse();
-             i = dao.obtenerSuministro(con, 1234567);
+             con = dao.conectarse();             
+             dao.registrarDatos(con, reg);
              dao.desconectarse(con);
-             
-             System.out.println(i);
         } catch (SQLException ex) {
             Logger.getLogger(prueba.class.getName()).log(Level.SEVERE, null, ex);
         }
