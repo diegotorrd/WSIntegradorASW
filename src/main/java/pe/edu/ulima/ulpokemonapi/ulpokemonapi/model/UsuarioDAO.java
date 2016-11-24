@@ -19,26 +19,31 @@ public class UsuarioDAO {
         conn.close();
     }
     
-    public UsuarioResponse obtener(Connection conn, String usuario, String password) throws SQLException{
-        String sql = "SELECT * FROM usuario WHERE username=? and password=?";
+    public Usuario obtener(Connection conn, Usuario usu) throws SQLException{
+        Usuario us = null;
+        String sql = "SELECT * FROM usuario WHERE USUARIO=? and CONTRASEÑA=?";
         
         PreparedStatement ps = conn.prepareStatement(sql);
         
-        ps.setString(1, usuario);
-        ps.setString(2, password);
+        ps.setString(1, usu.getUsername());
+        ps.setString(2, usu.getPassword());
         
         ResultSet rs = ps.executeQuery();
         
         UsuarioResponse user = null;
         if(rs.next()){
-            user = new UsuarioResponse(
-                    rs.getLong("id"),
-                    rs.getString("username"),
-                    rs.getString("password")
-            );
+            us = new Usuario();
+            us.setDni(rs.getInt(4));
+            us.setNombres(rs.getString(5));
+            us.setAp_paterno(rs.getString(6));
+            us.setAp_materno(rs.getString(7));
+            us.setTipo(rs.getInt(8));
+            return us;
+        }else{
+            us = null;
+            return us;
         }
         
-        return user;
         
     }
     

@@ -20,6 +20,7 @@ import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Registro;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.RegistroDAO;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Suministro;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.SuministroDAO;
+import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Usuario;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.UsuarioDAO;
 import retrofit2.Call;
 //import retrofit2.Callback;
@@ -39,15 +40,6 @@ public class Main {
         
         //Endpoint para sumar
         
-        
-        post("/divi", (req, resp) -> {
-            
-            NumReq numeros = new Gson().fromJson(req.body(), NumReq.class);
-            
-            
-            return numeros.getNum1()
-                   /numeros.getNum2();
-        });
         
 
 //         Endpoint para realizar un login
@@ -81,6 +73,21 @@ public class Main {
            
             return res;
         });
+        
+        post("/loguear", (req, resp) -> {
+            Usuario res;
+
+            UsuarioDAO usDao = new UsuarioDAO();
+
+            Usuario usu = new Gson().fromJson(req.body(), Usuario.class);
+            
+            Connection conn = usDao.conectarse();
+            res = usDao.obtener(conn, usu);
+
+            usDao.desconectarse(conn);
+           
+            return res;
+        }, new JsonTransformer());
 //
 //        // Endpoint para registrar un nuevo usuario
 //        post("/usuarios", (req, resp) -> {
