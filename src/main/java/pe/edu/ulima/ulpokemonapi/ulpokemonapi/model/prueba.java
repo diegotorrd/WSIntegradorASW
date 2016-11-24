@@ -22,15 +22,16 @@ public class prueba {
      */
     public static void main(String[] args) throws ClassNotFoundException {
         // TODO code application logic here
-        RegistroDAO dao = new RegistroDAO();
+        SuministroDAO dao = new SuministroDAO();
         Registro reg = new Registro(1,5896,485.36f);
         reg.setConsumo(485.63f);
         Connection con;
-        int i;
+        Suministro i = null;
         try {
              con = dao.conectarse();             
-             dao.registrarDatos(con, reg);
+             i = dao.obtenerSuministro(con, 1234567);
              dao.desconectarse(con);
+             System.out.println(i.getCliente().getAp_materno()+ "  " + i.getId_suministro());
         } catch (SQLException ex) {
             Logger.getLogger(prueba.class.getName()).log(Level.SEVERE, null, ex);
         }

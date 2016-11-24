@@ -5,22 +5,27 @@
  */
 package pe.edu.ulima.ulpokemonapi.ulpokemonapi.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Diego Torres
  */
-public class Suministro {
+public class Suministro implements Serializable{
     private int id_suministro;
-    private int dni_titular;
+    private Cliente cliente;
+        
 
     public Suministro() {
     }
 
-    
-    public Suministro(int id_suministro, int dni_titular) {
+    public Suministro(int id_suministro, Cliente cliente) {
         this.id_suministro = id_suministro;
-        this.dni_titular = dni_titular;
+        this.cliente = cliente;
     }
+
+    
+   
 
     public int getId_suministro() {
         return id_suministro;
@@ -30,13 +35,14 @@ public class Suministro {
         this.id_suministro = id_suministro;
     }
 
-    public int getDni_titular() {
-        return dni_titular;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setDni_titular(int dni_titular) {
-        this.dni_titular = dni_titular;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
+
     
     
 }

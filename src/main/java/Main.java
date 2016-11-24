@@ -16,9 +16,9 @@ import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.NumReq;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.Status;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.UsuarioResponse;
 //import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Pokemon;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.PokemonDAO;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Registro;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.RegistroDAO;
+import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Suministro;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.SuministroDAO;
 import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.UsuarioDAO;
 import retrofit2.Call;
@@ -53,7 +53,7 @@ public class Main {
 //         Endpoint para realizar un login
         post("/suministro", (req, resp) -> {
             String data = req.body();
-            int res;
+            Suministro res;
 
             SuministroDAO sumDAO = new SuministroDAO();
 
@@ -63,7 +63,9 @@ public class Main {
             sumDAO.desconectarse(conn);
             return res;
            
-        });
+        }, new JsonTransformer());
+        
+        
         
         post("/registrar", (req, resp) -> {
             boolean res;
