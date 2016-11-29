@@ -37,18 +37,15 @@ public class RegistroDAO {
         while(rs.next()){
            idmax =  rs.getInt(1);
         }
-        String sql2 = "insert into registro (id, id_sum, lectura, consumo, fecha) values (?,?,?,?,Now())";
+        String sql2 = "insert into registro (id, id_sum, lectura, fecha) values (?,?,?,Now())";
         
         PreparedStatement ps2 = conn.prepareStatement(sql2);
         
         ps2.setInt(1, idmax+1);
         ps2.setInt(2, reg.getIdsum());
         ps2.setInt(3, reg.getLectura());
-        ps2.setFloat(4, reg.getConsumo());
         
         return ps2.execute();
-              
-        
     }
     
 public List<DatosTabla> obtenerRegistros(Connection con) throws SQLException{
@@ -56,9 +53,9 @@ public List<DatosTabla> obtenerRegistros(Connection con) throws SQLException{
     List<DatosTabla> data = new ArrayList<>();
     DatosTabla dat = null;
     
-    String sql = "SELECT c.dni, c.nombres, c.apellido_paterno, c.apellido_materno, c.direccion, o.id_sum, o.lectura, o.consumo, o.fecha " +
+    String sql = "SELECT c.dni, c.nombres, c.ap_paterno, c.ap_materno, c.direccion, o.id_sum, o.lectura, o.fecha " +
                     "FROM registro o, cliente c, suministro s " +
-                    "WHERE o.id_sum = s.num_sum " +
+                    "WHERE o.id_sum = s.id_sum " +
                     "AND s.dni_titular = c.dni";
     PreparedStatement ps = con.prepareStatement(sql);
     rs = ps.executeQuery();
@@ -71,9 +68,8 @@ public List<DatosTabla> obtenerRegistros(Connection con) throws SQLException{
         dat.setAp_materno(rs.getString(4)); 
         dat.setDireccion(rs.getString(5)); 
         dat.setId_sum(rs.getInt(6)); 
-        dat.setLectura(rs.getInt(7)); 
-        dat.setConsumo(rs.getInt(8)); 
-        dat.setFecha(rs.getString(9)); 
+        dat.setLectura(rs.getInt(7));  
+        dat.setFecha(rs.getString(8)); 
         data.add(dat);
     }
     

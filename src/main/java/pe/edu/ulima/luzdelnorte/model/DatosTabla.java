@@ -19,13 +19,12 @@ public class DatosTabla implements Serializable{
     private String direccion;
     private int id_sum;
     private int lectura;
-    private int consumo;
     private String fecha;
 
     public DatosTabla() {
     }
 
-    public DatosTabla(String dni, String nombres, String ap_paterno, String ap_materno, String direccion, int id_sum, int lectura, int consumo, String fecha) {
+    public DatosTabla(String dni, String nombres, String ap_paterno, String ap_materno, String direccion, int id_sum, int lectura, String fecha) {
         this.dni = dni;
         this.nombres = nombres;
         this.ap_paterno = ap_paterno;
@@ -33,7 +32,6 @@ public class DatosTabla implements Serializable{
         this.direccion = direccion;
         this.id_sum = id_sum;
         this.lectura = lectura;
-        this.consumo = consumo;
         this.fecha = fecha;
     }
 
@@ -91,14 +89,6 @@ public class DatosTabla implements Serializable{
 
     public void setLectura(int lectura) {
         this.lectura = lectura;
-    }
-
-    public int getConsumo() {
-        return consumo;
-    }
-
-    public void setConsumo(int consumo) {
-        this.consumo = consumo;
     }
 
     public String getFecha() {

@@ -11,6 +11,7 @@ import pe.edu.ulima.luzdelnorte.dto.GeneralResponse;
 import pe.edu.ulima.luzdelnorte.dto.ServiceGenerator;
 //import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.pokemon.Type;
 import pe.edu.ulima.luzdelnorte.dto.usuario.Status;
+import pe.edu.ulima.luzdelnorte.model.DatosTabla;
 //import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Pokemon;
 import pe.edu.ulima.luzdelnorte.model.Registro;
 import pe.edu.ulima.luzdelnorte.model.RegistroDAO;
@@ -82,6 +83,21 @@ public class Main {
             return res;
         }, new JsonTransformer());
 //
+
+        post("/obtenerRegs", (req, resp) -> {
+            List<DatosTabla> res = new ArrayList<>();
+
+            RegistroDAO regDao = new RegistroDAO();
+
+            Usuario usu = new Gson().fromJson(req.body(), Usuario.class);
+            
+            Connection conn = regDao.conectarse();
+            res = regDao.obtenerRegistros(conn);
+
+            regDao.desconectarse(conn);
+           
+            return res;
+        }, new JsonTransformer());
 //        // Endpoint para registrar un nuevo usuario
 //        post("/usuarios", (req, resp) -> {
 //            String data = req.body();

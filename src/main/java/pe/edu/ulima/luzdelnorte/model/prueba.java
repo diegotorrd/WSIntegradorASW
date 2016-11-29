@@ -26,8 +26,7 @@ public class prueba {
         // TODO code application logic here
         RegistroDAO dao = new RegistroDAO();
         UsuarioDAO udao = new UsuarioDAO();
-        Registro reg = new Registro(1,5896,485.36f);
-        reg.setConsumo(485.63f);
+        Registro reg = new Registro(1234567, 75696);
         Connection con;
         Usuario i = null;
         Usuario g = new Usuario();
@@ -36,9 +35,9 @@ public class prueba {
         List<DatosTabla> dat = new ArrayList<>();
         try {
              con = dao.conectarse();
-             i = udao.obtener(con, g);
+             dat = dao.obtenerRegistros(con);
              dao.desconectarse(con);
-             System.out.println(i.getNombres());
+             System.out.println(dat.get(0).getFecha());
         } catch (SQLException ex) {
             Logger.getLogger(prueba.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -18,16 +18,14 @@ import java.sql.Date;
 public class Registro implements Serializable{
     private int idsum;
     private int lectura;
-    private float consumo;
     private Date fecha;
 
     public Registro() {
     }
 
-    public Registro(int idsum, int lectura, float consumo) {
+    public Registro(int idsum, int lectura) {
         this.idsum = idsum;
         this.lectura = lectura;
-        this.consumo = consumo;
     }
 
     public int getIdsum() {
@@ -49,13 +47,6 @@ public class Registro implements Serializable{
         this.lectura = lectura;
     }
 
-    public float getConsumo() {
-        return consumo;
-    }
-
-    public void setConsumo(float consumo) {
-        this.consumo = consumo;
-    }
 
     public Date getFecha() {
         return fecha;

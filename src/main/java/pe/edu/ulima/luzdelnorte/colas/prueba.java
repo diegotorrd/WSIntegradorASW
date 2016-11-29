@@ -20,7 +20,6 @@ public class prueba {
         // TODO code application logic here
         Registro reg = new Registro();
         
-        reg.setConsumo(45.2f);
         reg.setIdsum(1234567);
         reg.setLectura(458963);
         
