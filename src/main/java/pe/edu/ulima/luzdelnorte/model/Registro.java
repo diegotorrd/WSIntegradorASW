@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.ulima.ulpokemonapi.ulpokemonapi.model;
+package pe.edu.ulima.luzdelnorte.model;
+
+import java.io.Serializable;
+import java.sql.Date;
 
 
 
@@ -12,10 +15,11 @@ package pe.edu.ulima.ulpokemonapi.ulpokemonapi.model;
  *
  * @author Diego Torres
  */
-public class Registro {
+public class Registro implements Serializable{
     private int idsum;
     private int lectura;
     private float consumo;
+    private Date fecha;
 
     public Registro() {
     }
@@ -51,6 +55,14 @@ public class Registro {
 
     public void setConsumo(float consumo) {
         this.consumo = consumo;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     

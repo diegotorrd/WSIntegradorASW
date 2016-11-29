@@ -1,12 +1,11 @@
 
-package pe.edu.ulima.ulpokemonapi.ulpokemonapi.model;
+package pe.edu.ulima.luzdelnorte.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.UsuarioResponse;
 
 public class UsuarioDAO {
     public Connection conectarse() throws ClassNotFoundException, SQLException{
@@ -21,7 +20,7 @@ public class UsuarioDAO {
     
     public Usuario obtener(Connection conn, Usuario usu) throws SQLException{
         Usuario us = null;
-        String sql = "SELECT * FROM usuario WHERE USUARIO=? and CONTRASEÑA=?";
+        String sql = "SELECT * FROM usuario WHERE USUARIO=? and PASSWORD=?";
         
         PreparedStatement ps = conn.prepareStatement(sql);
         
@@ -30,14 +29,13 @@ public class UsuarioDAO {
         
         ResultSet rs = ps.executeQuery();
         
-        UsuarioResponse user = null;
         if(rs.next()){
             us = new Usuario();
-            us.setDni(rs.getInt(4));
-            us.setNombres(rs.getString(5));
-            us.setAp_paterno(rs.getString(6));
-            us.setAp_materno(rs.getString(7));
-            us.setTipo(rs.getInt(8));
+            us.setDni(rs.getInt(7));
+            us.setNombres(rs.getString(4));
+            us.setAp_paterno(rs.getString(5));
+            us.setAp_materno(rs.getString(6));
+            us.setTipo(rs.getInt(3));
             return us;
         }else{
             us = null;

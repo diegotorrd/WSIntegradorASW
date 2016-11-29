@@ -1,4 +1,4 @@
-package pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto;
+package pe.edu.ulima.luzdelnorte.dto;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

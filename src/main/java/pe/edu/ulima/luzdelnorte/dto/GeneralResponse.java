@@ -1,6 +1,6 @@
-package pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto;
+package pe.edu.ulima.luzdelnorte.dto;
 
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.Status;
+import pe.edu.ulima.luzdelnorte.dto.usuario.Status;
 
 public class GeneralResponse {
     private Status status;

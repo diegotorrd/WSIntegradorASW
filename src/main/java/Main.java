@@ -5,23 +5,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.GeneralResponse;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.JsonTransformer;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.LoginRequest;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.LoginResponse;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.RegistroRequest;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.ServiceGenerator;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.NumReq;
+import pe.edu.ulima.luzdelnorte.colas.Server;
+import pe.edu.ulima.luzdelnorte.dto.JsonTransformer;
+import pe.edu.ulima.luzdelnorte.dto.GeneralResponse;
+import pe.edu.ulima.luzdelnorte.dto.ServiceGenerator;
 //import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.pokemon.Type;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.Status;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.UsuarioResponse;
+import pe.edu.ulima.luzdelnorte.dto.usuario.Status;
 //import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Pokemon;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Registro;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.RegistroDAO;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Suministro;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.SuministroDAO;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Usuario;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.UsuarioDAO;
+import pe.edu.ulima.luzdelnorte.model.Registro;
+import pe.edu.ulima.luzdelnorte.model.RegistroDAO;
+import pe.edu.ulima.luzdelnorte.model.Suministro;
+import pe.edu.ulima.luzdelnorte.model.SuministroDAO;
+import pe.edu.ulima.luzdelnorte.model.Usuario;
+import pe.edu.ulima.luzdelnorte.model.UsuarioDAO;
 import retrofit2.Call;
 //import retrofit2.Callback;
 //import retrofit2.Response;
@@ -62,14 +58,11 @@ public class Main {
         post("/registrar", (req, resp) -> {
             boolean res;
 
-            RegistroDAO regDAO = new RegistroDAO();
+            Server serv = new Server();
 
             Registro reg = new Gson().fromJson(req.body(), Registro.class);
             
-            Connection conn = regDAO.conectarse();
-            res = regDAO.registrarDatos(conn, reg);
-
-            regDAO.desconectarse(conn);
+            res = serv.mandarCola(reg);
            
             return res;
         });

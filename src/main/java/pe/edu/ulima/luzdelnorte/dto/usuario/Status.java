@@ -1,4 +1,4 @@
-package pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario;
+package pe.edu.ulima.luzdelnorte.dto.usuario;
 
 public class Status {
     private int code;

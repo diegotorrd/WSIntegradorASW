@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.ulima.ulpokemonapi.ulpokemonapi.model;
+package pe.edu.ulima.luzdelnorte.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.usuario.UsuarioResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -49,4 +50,34 @@ public class RegistroDAO {
               
         
     }
+    
+public List<DatosTabla> obtenerRegistros(Connection con) throws SQLException{
+    ResultSet rs =null;
+    List<DatosTabla> data = new ArrayList<>();
+    DatosTabla dat = null;
+    
+    String sql = "SELECT c.dni, c.nombres, c.apellido_paterno, c.apellido_materno, c.direccion, o.id_sum, o.lectura, o.consumo, o.fecha " +
+                    "FROM registro o, cliente c, suministro s " +
+                    "WHERE o.id_sum = s.num_sum " +
+                    "AND s.dni_titular = c.dni";
+    PreparedStatement ps = con.prepareStatement(sql);
+    rs = ps.executeQuery();
+    
+    while(rs.next()){
+        dat = new DatosTabla();
+        dat.setDni(rs.getString(1)); 
+        dat.setNombres(rs.getString(2)); 
+        dat.setAp_paterno(rs.getString(3)); 
+        dat.setAp_materno(rs.getString(4)); 
+        dat.setDireccion(rs.getString(5)); 
+        dat.setId_sum(rs.getInt(6)); 
+        dat.setLectura(rs.getInt(7)); 
+        dat.setConsumo(rs.getInt(8)); 
+        dat.setFecha(rs.getString(9)); 
+        data.add(dat);
+    }
+    
+        return data;
+       
+}
 }

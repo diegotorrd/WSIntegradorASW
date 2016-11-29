@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.ulima.ulpokemonapi.ulpokemonapi.model;
+package pe.edu.ulima.luzdelnorte.model;
 
 import java.io.Serializable;
 

@@ -1,5 +1,5 @@
 
-package pe.edu.ulima.ulpokemonapi.ulpokemonapi.model;
+package pe.edu.ulima.luzdelnorte.model;
 
 import java.io.Serializable;
 
