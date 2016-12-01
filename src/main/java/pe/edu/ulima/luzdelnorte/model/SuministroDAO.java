@@ -29,7 +29,7 @@ public class SuministroDAO {
     public Suministro obtenerSuministro(Connection conn, int id_suministro) throws SQLException{
         Suministro sum = null;
         Cliente cli = null;
-        String sql = "SELECT dni_titular FROM suministro WHERE num_sum=?";
+        String sql = "SELECT dni_titular FROM suministro WHERE id_sum=?";
         
         PreparedStatement ps = conn.prepareStatement(sql);
         
