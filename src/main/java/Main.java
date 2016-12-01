@@ -1,16 +1,21 @@
 
 import com.google.gson.Gson;
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.net.ssl.SSLServerSocket;
 import pe.edu.ulima.luzdelnorte.colas.Server;
 import pe.edu.ulima.luzdelnorte.dto.JsonTransformer;
 import pe.edu.ulima.luzdelnorte.dto.GeneralResponse;
 import pe.edu.ulima.luzdelnorte.dto.ServiceGenerator;
 //import pe.edu.ulima.ulpokemonapi.ulpokemonapi.dto.pokemon.Type;
 import pe.edu.ulima.luzdelnorte.dto.usuario.Status;
+import pe.edu.ulima.luzdelnorte.model.Cliente;
+import pe.edu.ulima.luzdelnorte.model.ClienteDAO;
 import pe.edu.ulima.luzdelnorte.model.DatosTabla;
 //import pe.edu.ulima.ulpokemonapi.ulpokemonapi.model.Pokemon;
 import pe.edu.ulima.luzdelnorte.model.Registro;
@@ -29,8 +34,9 @@ import static spark.Spark.post;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         port(Integer.parseInt(System.getenv("PORT")));
+        
         //port(4567);
 
         //IPokeAPIClient client = ServiceGenerator.createService(IPokeAPIClient.class);
@@ -98,6 +104,21 @@ public class Main {
            
             return res;
         }, new JsonTransformer());
+        
+        post("/crearCliente", (req, resp) -> {
+            String res = "";
+
+            ClienteDAO cliDAO = new ClienteDAO();
+
+            Cliente cli = new Gson().fromJson(req.body(), Cliente.class);
+            
+            Connection conn = cliDAO.conectarse();
+            res = cliDAO.registrarCliente(conn,cli);
+
+            cliDAO.desconectarse(conn);
+           
+            return res;
+        });
 //        // Endpoint para registrar un nuevo usuario
 //        post("/usuarios", (req, resp) -> {
 //            String data = req.body();

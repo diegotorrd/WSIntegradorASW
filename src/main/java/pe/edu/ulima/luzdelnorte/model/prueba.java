@@ -24,7 +24,7 @@ public class prueba {
      */
     public static void main(String[] args) throws ClassNotFoundException {
         // TODO code application logic here
-        RegistroDAO dao = new RegistroDAO();
+        ClienteDAO dao = new ClienteDAO();
         UsuarioDAO udao = new UsuarioDAO();
         Registro reg = new Registro(1234567, 75696);
         Connection con;
@@ -32,12 +32,16 @@ public class prueba {
         Usuario g = new Usuario();
         g.setUsername("dtorres");
         g.setPassword("1234");
-        List<DatosTabla> dat = new ArrayList<>();
+        
+        Cliente cli = new Cliente();
+        cli.setAp_paterno("torr");
+        List<Cliente> clis = new ArrayList<>();
+        String resi="";
         try {
              con = dao.conectarse();
-             dat = dao.obtenerRegistros(con);
+             clis = dao.obtenerClientes(con, cli);
              dao.desconectarse(con);
-             System.out.println(dat.get(0).getFecha());
+             System.out.println(clis.size());
         } catch (SQLException ex) {
             Logger.getLogger(prueba.class.getName()).log(Level.SEVERE, null, ex);
         }

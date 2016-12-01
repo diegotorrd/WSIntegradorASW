@@ -50,7 +50,7 @@ public class SuministroDAO {
             
             while(rs2.next()){
                 cli = new Cliente();
-                cli.setDni(rs2.getInt(1));
+                cli.setDni(rs2.getString(1));
                 cli.setNombres(rs2.getString(2));
                 cli.setAp_paterno(rs2.getString(3));
                 cli.setAp_materno(rs2.getString(4));

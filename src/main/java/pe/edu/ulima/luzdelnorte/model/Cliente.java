@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author Diego Torres
  */
 public class Cliente implements Serializable{
-    private int dni;
+    private String dni;
     private String nombres;
     private String ap_paterno;
     private String ap_materno;
@@ -22,7 +22,7 @@ public class Cliente implements Serializable{
     public Cliente() {
     }
 
-    public Cliente(int dni, String nombres, String ap_paterno, String ap_materno, String direccion, String distrito) {
+    public Cliente(String dni, String nombres, String ap_paterno, String ap_materno, String direccion, String distrito) {
         this.dni = dni;
         this.nombres = nombres;
         this.ap_paterno = ap_paterno;
@@ -31,11 +31,11 @@ public class Cliente implements Serializable{
         this.distrito = distrito;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
