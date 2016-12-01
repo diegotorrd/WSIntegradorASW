@@ -106,7 +106,7 @@ public class Main {
         }, new JsonTransformer());
         
         post("/crearCliente", (req, resp) -> {
-            String res = "";
+            String res;
 
             ClienteDAO cliDAO = new ClienteDAO();
 
@@ -118,7 +118,7 @@ public class Main {
             cliDAO.desconectarse(conn);
            
             return res;
-        });
+        },new JsonTransformer());
 //        // Endpoint para registrar un nuevo usuario
 //        post("/usuarios", (req, resp) -> {
 //            String data = req.body();
