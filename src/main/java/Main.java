@@ -30,7 +30,7 @@ import static spark.Spark.post;
 public class Main {
 
     public static void main(String[] args) {
-//        port(Integer.parseInt(System.getenv("PORT")));
+        port(Integer.parseInt(System.getenv("PORT")));
         //port(4567);
 
         //IPokeAPIClient client = ServiceGenerator.createService(IPokeAPIClient.class);
