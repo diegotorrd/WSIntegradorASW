@@ -28,7 +28,13 @@ public class RegistroDAO {
         conn.close();
     }
     
-    public boolean registrarDatos(Connection conn, Registro reg) throws SQLException{
+    public boolean registrarDatos(Connection conn, String reg) throws SQLException{
+        
+        int pos1,pos2;
+        
+        pos1=reg.indexOf(";");
+        pos2=reg.length();
+        
         
         String sql1 = "Select max(id) from registro";
         PreparedStatement ps = conn.prepareStatement(sql1);
@@ -42,8 +48,8 @@ public class RegistroDAO {
         PreparedStatement ps2 = conn.prepareStatement(sql2);
         
         ps2.setInt(1, idmax+1);
-        ps2.setInt(2, reg.getIdsum());
-        ps2.setInt(3, reg.getLectura());
+        ps2.setInt(2, Integer.valueOf(reg.substring(0,pos1)));
+        ps2.setInt(3, Integer.valueOf(reg.substring(pos1+1,pos2)));
         
         return ps2.execute();
     }

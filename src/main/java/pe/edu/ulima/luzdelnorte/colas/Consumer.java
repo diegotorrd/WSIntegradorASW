@@ -25,7 +25,7 @@ public class Consumer implements MessageListener {
 				ObjectMessage objectMessage = (ObjectMessage) arg0;
                                 dao = new RegistroDAO();
                                 con = dao.conectarse();
-                                dao.registrarDatos(con, (Registro)((ObjectMessage)arg0).getObject());
+                                dao.registrarDatos(con, (String)((ObjectMessage)arg0).getObject());
                                 dao.desconectarse(con);
 			}
 		} catch (JMSException e) {

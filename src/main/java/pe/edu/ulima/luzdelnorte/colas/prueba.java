@@ -20,13 +20,16 @@ public class prueba {
         // TODO code application logic here
         Registro reg = new Registro();
         
-        reg.setIdsum(1234567);
-        reg.setLectura(458963);
+//        reg.setIdsum(1234567);
+//        reg.setLectura(9863);
+//        
+//        Server s = new Server();
+//        
+//        s.mandarCola(reg);
         
-        Server s = new Server();
+        Client c = new Client();
         
-        s.mandarCola(reg);
-        
+        c.leerCola();
        
                 
     }

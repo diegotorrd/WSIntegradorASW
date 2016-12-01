@@ -42,7 +42,7 @@ public class Server {
                                                     
                         
                         ObjectMessage objectMessage = session.createObjectMessage();
-                        objectMessage.setObject(reg);
+                        objectMessage.setObject(reg.getIdsum() +";"+reg.getLectura());
 			javax.jms.Message message = objectMessage;
 
 			producer.send(message);
